@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "\\name{create_final_filtered_dataframe}\n\\alias{create_final_filtered_dataframe}\n\\title{\nCreate the final filtered dataframe.\n}\n\\description{\nCreates the hard filtered final dataframe by removing PON, cFilter, soft clipped and hard clipped\nfiltered data from the input dataframe.\n}\n\\usage{\ncreate_final_filtered_dataframe(data = NULL, pon_threshold = 1, flagged_threshold = 1, soft_threshold = 0, hard_threshold = 0)\n}\n\\arguments{\n  \\item{data}{dataframe containing the annotated SNV data (required)}\n  \\item{pon_threshold}{the number of recurrent normal samples a mutation is found in (default: 1)}\n  \\item{flagged_threshold}{the number of flagged filters a mutation is found in (default: 1)}\n  \\item{soft_threshold}{the maximum number of reads a mutation can be found in a soft clipped region (default: 0)}\n  \\item{hard_threshold}{the maximum number of reads a mutation can be found in a hard clipped region (default: 0)}\n}\n\\value{\nReturns a dataframe containing hard filtered SNVs.\n}\n\\author{\nRichard J. de Borja <richard.deborja@sickkids.ca>\n}\n\\keyword{ snvs }\n\\keyword{ somatic }\n\n",
+    "created" : 1492442769658.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3036206436",
+    "id" : "586002E5",
+    "lastKnownWriteTime" : 1492443248,
+    "last_content_update" : 1492443248810,
+    "path" : "~/local/src/R/ShlienLab.Core.SSM/man/create_final_filtered_dataframe.Rd",
+    "project_path" : "man/create_final_filtered_dataframe.Rd",
+    "properties" : {
+    },
+    "relative_order" : 6,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_doc"
+}

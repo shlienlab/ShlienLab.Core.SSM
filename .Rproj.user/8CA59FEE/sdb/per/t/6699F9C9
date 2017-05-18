@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "annotate.mutect2.data <- function(data=NULL) {\n  if (is.null(data)) stop(\"Mandatory argument data is missing\")\n\n  data$ensembl_gene <- apply(X=as.matrix(data$annovar_ens_gene), MARGIN=1, FUN=remove.multiple.genes)\n  data$hgnc_gene <- apply(X=as.matrix(data$annovar_gene), MARGIN=1, FUN=remove.multiple.genes)\n  data$cosmic_census <- filter.for.cosmic.cancer.gene.census(data=data$hgnc_gene)\n  data$aa <- apply(X=as.matrix(data$annovar_annotation), MARGIN=1, FUN=add.aminoacid.column)\n  return(data)\n  }\n",
+    "created" : 1491837488798.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1349033730",
+    "id" : "6699F9C9",
+    "lastKnownWriteTime" : 1450357991,
+    "last_content_update" : 1450357991,
+    "path" : "~/local/src/R/ShlienLab.Core.SSM/R/annotate.mutect2.data.R",
+    "project_path" : "R/annotate.mutect2.data.R",
+    "properties" : {
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

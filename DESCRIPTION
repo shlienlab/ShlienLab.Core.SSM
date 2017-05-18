@@ -1,0 +1,11 @@
+Package: ShlienLab.Core.SSM
+Type: Package
+Title: Simple Somatic Mutation (SSM) library.
+Version: 0.1.2
+Author: Richard J. de Borja
+Maintainer: Richard J. de Borja <richard.deborja@sickkids.ca>
+Description: A R package containing the standard filters for simple somatic mutations (i.e. SNVs and Indels) used in the Shlien Lab.
+Depends: R (>= 3.3), plyr (>= 1.8), dplyr (>= 0.4), ShlienLab.Core.Annotation (>= 0.4)       
+License: GPL-2
+Encoding: UTF-8
+LazyData: true

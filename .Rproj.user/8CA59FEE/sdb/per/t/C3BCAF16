@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "create_final_filtered_dataframe <- function(data = NULL, pon_threshold = 1, flagged_threshold = 1, soft_threshold = 0, hard_threshold = 0) {\n  if (is.null(data)) stop(\"Mandatory argument data is missing\")\n\n  data <- data %>%\n    filter(pon_count <= pon_threshold) %>%\n    filter(flagged_count <= flagged_threshold) %>%\n    filter(in_hard_clips <= hard_threshold) %>%\n    filter(in_soft_clips <= soft_threshold)\n\n  return(data)\n  }\n",
+    "created" : 1492439859058.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3728251841",
+    "id" : "C3BCAF16",
+    "lastKnownWriteTime" : 1492443002,
+    "last_content_update" : 1492443002918,
+    "path" : "~/local/src/R/ShlienLab.Core.SSM/R/create_final_filtered_dataframe.R",
+    "project_path" : "R/create_final_filtered_dataframe.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

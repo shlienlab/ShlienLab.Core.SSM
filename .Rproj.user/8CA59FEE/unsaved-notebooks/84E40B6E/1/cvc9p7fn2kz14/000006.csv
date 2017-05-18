@@ -1,0 +1,32 @@
+"0","for (i in 2:133) {
+  mutect_file <- paste(
+    sep='',
+    '/Volumes/adam_rodesktop_icgc/ewing_sarcoma_tirode/ref/titration_sim/',
+    i,
+    '_4094.rda'
+    )
+  mutect2_file <- paste(
+    sep='',
+    '/Volumes/adam_rodesktop_icgc/ewing_sarcoma_tirode/ref/titration_sim/',
+    i,
+    '_4094_mutect2.rda'
+    )
+  tmp_data <- load(mutect_file)
+  tmp_data <- get(tmp_data)
+  data_coverage[i,]$mutect <- nrow(hard_filter_data(data=tmp_data))
+  }
+"
+"2","provided 3 variables to replace 2 variables"
+"2","provided 3 variables to replace 2 variables"
+"2","provided 3 variables to replace 2 variables"
+"2","provided 3 variables to replace 2 variables"
+"2","provided 3 variables to replace 2 variables"
+"2","provided 3 variables to replace 2 variables"
+"2","provided 3 variables to replace 2 variables"
+"2","provided 3 variables to replace 2 variables"
+"2","provided 3 variables to replace 2 variables"
+"2","provided 3 variables to replace 2 variables"
+"2","provided 3 variables to replace 2 variables"
+"2","provided 3 variables to replace 2 variables"
+"2","
+"

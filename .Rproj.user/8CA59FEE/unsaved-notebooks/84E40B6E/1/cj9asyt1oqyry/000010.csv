@@ -1,0 +1,5 @@
+"0","filltered_4094_table$MuTect2[5] <- nrow(data_4094_mutect2 %>% filter(in_soft_clips == TRUE | in_hard_clips == TRUE))
+"
+"2","Error in filltered_4094_table$MuTect2[5] <- nrow(data_4094_mutect2 %>%  : 
+  object 'filltered_4094_table' not found
+"

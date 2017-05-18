@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "filter_snv <- function(data=NULL, coverage=TRUE, source='WXS', exac=0.001, vaf=0.0) {\n  if (is.null(data)) stop(\"Mandatory argument data is missing\")\n\n  # check for valid entries for the source argument\n  if (!(source %in% c('WGS', 'WXS', 'CPANEL')) & coverage == TRUE) stop(\"Invalid source argument, must be one of WGS, WXS, or CPANEL\")\n\n  # use MuTect's internal filter and keep those listed as \"PASS\"\n  data <- data %>%\n    filter(gatk_filter == 'PASS') %>%\n    filter(gatk_mutation_type == 'snv')\n\n  if (coverage == TRUE) {\n    if (source == 'WXS') {\n      data <- data %>%\n        filter(gatk_normal_depth >= 20) %>%\n        filter(gatk_tumour_depth >= 30)\n    } else if (source == 'WGS') {\n      data <- data %>%\n        filter(gatk_normal_depth >= 10) %>%\n        filter(gatk_tumour_depth >= 10)\n    } else if (source == 'CPANEL') {\n      data <- data %>%\n        filter(gatk_normal_depth >= 50) %>%\n        filter(gatk_tumour_depth >= 50)\n    } else {\n      stop(\"Invalid source, must be either WGS, WXS, or CPANEL\")\n      }\n  }\n\n  # check if clinvar was used to filter the data (older data sets may not have this)\n  if ('annovar_clinvar' %in% names(data)) {\n    data <- data %>%\n      filter(is.na(annovar_dbsnp) | annovar_dbsnp == '' | annovar_dbsnp == 0 | grepl(x=annovar_clinvar, pattern='CLINSIG=pathogenic')) %>%\n      filter(is.na(annovar_complete_genomics) | annovar_complete_genomics != '' | annovar_complete_genomics == 0 | grepl(x=annovar_clinvar, pattern='CLINSIG=pathogenic')) %>%\n      filter(is.na(annovar_1000g) | annovar_1000g == '' | annovar_1000g == 0 | grepl(x=annovar_clinvar, pattern='CLINSIG=pathogenic'))\n  } else {\n    data <- data %>%\n      filter(dbsnp_site != 'DBSNP') %>%\n      filter(is.na(annovar_dbsnp) | annovar_dbsnp == '' | annovar_dbsnp == 0) %>%\n      filter(is.na(annovar_complete_genomics) | annovar_complete_genomics == '' | annovar_complete_genomics == 0) %>%\n      filter(is.na(annovar_1000g) | annovar_1000g == '' | annovar_1000g == 0)\n    }\n\n  # filter variants based on their variant allele fraction\n  data <- data %>% filter(gatk_tumour_allele_fraction >= vaf)\n\n  # there is an exome specific filter that can be applied using the ExAC and ESP databases\n  if ('annovar_exac' %in% names(data) & source == 'WXS') {\n    data <- data %>%\n      filter(annovar_exac <= exac | is.na(annovar_exac)) %>%\n      filter(is.na(annovar_esp) | annovar_esp == '' | annovar_esp == 0 | grepl(x=annovar_clinvar, pattern='CLINSIG=pathogenic'))\n    }\n  return(data)\n  }\n",
+    "created" : 1491567053705.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2302190776",
+    "id" : "70647DA9",
+    "lastKnownWriteTime" : 1491833685,
+    "last_content_update" : 1491833685956,
+    "path" : "~/local/src/R/ShlienLab.Core.SSM/R/filter_snv.R",
+    "project_path" : "R/filter_snv.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

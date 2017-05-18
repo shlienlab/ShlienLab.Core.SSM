@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "---\ntitle: 'DREAM: INDEL Analysis'\nauthor: \"Richard J. de Borja\"\ndate: \"05/02/2017\"\noutput: pdf_document\n---\n\n```{r setup, include=FALSE}\nlibrary(devtools)\nload_all(pkg='.')\nlibrary(plyr)\nlibrary(dplyr)\nknitr::opts_chunk$set(echo = TRUE)\n```\n\n# Introduction\nThe DREAM competition dataset, provided by the BC group as part of the PROFYLE pipeline evaluation, includes truthset data for somatic indels.  We can use this data to determine the sensitivity and precision of calls made using MuTect2.\n\n# Methods\nLoading the MuTect2 simple somatic mutations, we can filter the data to obtain only insertion (ins) and deletion (del) events.  We can then filter the data based on the same criteria as the original\n```{r}\nssm_indel <- load('/Volumes/adam_rodesktop_largep/projects/dream_challenge/analysis/indel/gatk/3.5/set3_normal__set3_tumour/set3_tumour_annotated.rda')\nssm_indel <- get(ssm_indel)\nssm_indel <- ssm_indel %>% filter(gatk_mutation_type %in% c('ins', 'del'))\nssm_indel_filtered <- filter_indel(data=ssm_indel, source='WGS')\n```\n\n",
+    "created" : 1493210442415.000,
+    "dirty" : true,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "3542607165",
+    "id" : "6C4DB891",
+    "lastKnownWriteTime" : 6,
+    "last_content_update" : 1493739701215,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "last_setup_crc32" : "CDBAA4B8a087df16",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 9,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

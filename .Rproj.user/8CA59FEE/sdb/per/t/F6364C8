@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "### run_ssm_standard_filters.R ####################################################################\n# Run the standard simple somatic filters on MuTect2 output.  Output will be separate for SNVs and\n# indels.\n\n### HISTORY #######################################################################################\n# Version           Date            Developer               Comments\n# 0.01              2017-04-10      rdeborja                initial development\n# 0.02              2017-04-13      rdeborja                removed MT from dataframe due to\n#                                                           clip filtering issues\n\n### NOTES #########################################################################################\n#\n\n### PREAMBLE ######################################################################################\nlibrary('getopt')\n\nusage <- function() {\n    usage.text <- '\\nUsage: run_ssm_standard_filters.R --path </path/to/directory/containing/files> --sample <sample name> --source <WGS|WXS|CPANEL>\\n\\n'\n    return(usage.text)\n    }\n\nparams = matrix(\n    c(\n        'path', 'p', 1, 'character',\n        'sample', 's', 1, 'character',\n        'source', 'c', 1, 'character'\n        ),\n    ncol = 4,\n    byrow = TRUE\n    )\n\nopt = getopt(params)\n\n# verify arguments\nif (is.null(opt$path)) { stop(usage()) }\n\noutput <- paste(sep='.', paste(sep='_', opt$sample, 'annotated'), 'rda')\nsnv_filtered <- paste(sep='.', paste(sep='_', opt$sample, 'annotated_filtered_snv'), 'rda')\nindel_filtered <- paste(sep='.', paste(sep='_', opt$sample, 'annotated_filtered_indel'), 'rda')\n\n### LIBRARIES #####################################################################################\nlibrary(ShlienLab.Core.SSM)\n\n### FUNCTIONS #####################################################################################\n\n### GET DATA ######################################################################################\ndata <- get.mutect2.data(path=opt$path)\n\n### PROCESS DATA ##################################################################################\n# add additional annotations to the dataframe\ndata <- ShlienLab.Core.SSM::annotate.mutect2.data(data=data)\n\n# currently there is a bug in downstream filtering causing a pre-filter step to remove the\n# mitochondrial DNA from the output\ndata <- data %>% filter(annovar_chr != 'MT')\ndata <- data %>% filter(annovar_chr != 'M')\n\n# separately filter the snv and indel data\ndata.snv.filtered <- ShlienLab.Core.SSM::filter_snv(data=data, source='WGS')\ndata.indel.filtered <- ShlienLab.Core.SSM::filter_indel(data=data, source='WGS')\n\n# save the dataframes\nsave(data.snv.filtered, file=snv_filtered)\nsave(data.indel.filtered, file=indel_filtered)\n\n### ANALYSIS ######################################################################################\n\n### PLOTTING ######################################################################################\n\n### SESSION INFORMATION ###########################################################################\nsessionInfo()\n\n",
+    "created" : 1492431682996.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2743122387",
+    "id" : "F6364C8",
+    "lastKnownWriteTime" : 1492431794,
+    "last_content_update" : 1492431794,
+    "path" : "~/local/src/R/ShlienLab.Core.SSM/exec/run_ssm_standard_filters.R",
+    "project_path" : "exec/run_ssm_standard_filters.R",
+    "properties" : {
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

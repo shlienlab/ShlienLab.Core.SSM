@@ -1,0 +1,28 @@
+"0","library(plotting.general)
+"
+"2","Loading required package: ggplot2
+"
+"2","Need help getting started? Try the cookbook for R: http://www.cookbook-r.com/Graphs/
+"
+"2","Loading required package: RColorBrewer
+"
+"2","Loading required package: reshape2
+"
+"2","Loading required package: grid
+"
+"2","Loading required package: gridExtra
+"
+"2","
+Attaching package: ‘gridExtra’
+
+"
+"2","The following object is masked from ‘package:dplyr’:
+
+    combine
+
+"
+"2","The following object is masked from ‘package:BiocGenerics’:
+
+    combine
+
+"

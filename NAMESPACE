@@ -1,0 +1,10 @@
+exportPattern("^[[:alpha:]]+")
+
+export(
+  "annotate.mutect2.data",
+  "create_final_filtered_dataframe",
+  "filter_indel",
+  "filter_snv",
+  "get.mutect2.annotated.header",
+  "get.mutect2.data"
+  )

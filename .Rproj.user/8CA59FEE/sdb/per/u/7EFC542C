@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "compare_snv_df <- function(mutect=NULL, mutect2=NULL) {\n  mutect <- add.snvid(data=mutect)\n  mutect2 <- add.snvid(data=mutect2)\n  venn <- VennDiagram::venn.diagram(\n    x = list(MuTect=mutect$snvid, MuTect2=mutect2$snvid),\n    filename=NULL\n    )\n  return(venn)\n  }\n",
+    "created" : 1493758415554.000,
+    "dirty" : true,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "1964725260",
+    "id" : "7EFC542C",
+    "lastKnownWriteTime" : 8606223229700276230,
+    "last_content_update" : 1493758695116,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled4"
+    },
+    "relative_order" : 12,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

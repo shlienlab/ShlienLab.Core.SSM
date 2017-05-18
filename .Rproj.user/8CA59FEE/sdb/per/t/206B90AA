@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "filter_indel <- function(data=NULL, source='WXS', coverage=TRUE, indels=c('ins', 'del'), exac=0.001) {\n  if (is.null(data)) stop(\"Mandatory argument data is missing\")\n\n  # only process PASS indel data (i.e. gatk_mutation_type is \"ins\" or \"del\")\n  data <- data %>%\n    filter(gatk_filter == 'PASS') %>%\n    filter(gatk_mutation_type %in% indels)\n\n  # we haven't done a detailed analysis of depth of coverage for indels, regardless of the library type\n  # we will use the same coverage cutoffs until further investigation\n  if (coverage == TRUE) {\n    if (source == 'WXS') {\n      data <- data %>%\n        filter(gatk_normal_depth >= 10) %>%\n        filter(gatk_tumour_depth >= 20)\n    } else if (source == 'WGS') {\n      data <- data %>%\n        filter(gatk_normal_depth >= 10) %>%\n        filter(gatk_tumour_depth >= 20)\n    } else if (source == 'CPANEL') {\n      data <- data %>%\n        filter(gatk_normal_depth >= 10) %>%\n        filter(gatk_tumour_depth >= 20)\n    } else {\n      stop(\"Invalid source, must be either WGS, WXS, or CPANEL\")\n    }\n  }\n  #data <- data %>% filter(gatk_normal_depth >= normal.depth & gatk_tumour_depth >= tumour.depth)\n\n  if ('annovar_clinvar' %in% names(data)) {\n    data <- data %>%\n      filter(is.na(annovar_dbsnp) | annovar_dbsnp == '' | annovar_dbsnp == 0 | grepl(x=annovar_clinvar, pattern='CLINSIG=pathogenic')) %>%\n      filter(is.na(annovar_complete_genomics) | annovar_complete_genomics != '' | annovar_complete_genomics == 0 | grepl(x=annovar_clinvar, pattern='CLINSIG=pathogenic')) %>%\n      filter(is.na(annovar_1000g) | annovar_1000g == '' | annovar_1000g == 0 | grepl(x=annovar_clinvar, pattern='CLINSIG=pathogenic'))\n  } else {\n    data <- data %>%\n      filter(dbsnp_site != 'DBSNP') %>%\n      filter(is.na(annovar_dbsnp) | annovar_dbsnp == '' | annovar_dbsnp == 0) %>%\n      filter(is.na(annovar_complete_genomics) | annovar_complete_genomics == '' | annovar_complete_genomics == 0) %>%\n      filter(is.na(annovar_1000g) | annovar_1000g == '' | annovar_1000g == 0)\n  }\n\n  # there is an exome specific filter that can be applied using the ExAC and ESP databases\n  if ('annovar_exac' %in% names(data) & source == 'WXS') {\n    data <- data %>%\n      filter(annovar_exac <= exac | is.na(annovar_exac)) %>%\n      filter(is.na(annovar_esp) | annovar_esp == '' | annovar_esp == 0 | grepl(x=annovar_clinvar, pattern='CLINSIG=pathogenic'))\n  }\n\n  return(data)\n  }\n",
+    "created" : 1492633032949.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "725461109",
+    "id" : "206B90AA",
+    "lastKnownWriteTime" : 1492635611,
+    "last_content_update" : 1492635611645,
+    "path" : "~/local/src/R/ShlienLab.Core.SSM/R/filter_indel.R",
+    "project_path" : "R/filter_indel.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 8,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

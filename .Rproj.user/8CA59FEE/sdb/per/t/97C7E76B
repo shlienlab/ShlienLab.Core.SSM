@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "exportPattern(\"^[[:alpha:]]+\")\n\nexport(\n  \"annotate.mutect2.data\",\n  \"create_final_filtered_dataframe\",\n  \"filter_indel\",\n  \"filter_snv\",\n  \"get.mutect2.annotated.header\",\n  \"get.mutect2.data\"\n  )\n",
+    "created" : 1492443254395.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3610317298",
+    "id" : "97C7E76B",
+    "lastKnownWriteTime" : 1492443265,
+    "last_content_update" : 1492443265769,
+    "path" : "~/local/src/R/ShlienLab.Core.SSM/NAMESPACE",
+    "project_path" : "NAMESPACE",
+    "properties" : {
+    },
+    "relative_order" : 7,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_namespace"
+}
